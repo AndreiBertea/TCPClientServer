@@ -1,0 +1,9 @@
+./TCPClientServer/build
+./TCPClientServer/nbproject
+./TCPClientServer/test
+./TCPClientServer/build.xml
+./TCPClientServer/manifest.mf
+
+
+/build/
+/nbproject/private/
