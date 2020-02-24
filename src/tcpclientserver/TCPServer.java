@@ -5,7 +5,10 @@
  */
 package tcpclientserver;
 
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -22,12 +25,12 @@ public class TCPServer {
      */
     public static void main(String[] args) {
         // porta del server maggiore di 1024 
-        int port=2000;
+        int port=2001;
         //oggetto ServerSocket necessario per accettare richieste dal client
         ServerSocket sSocket = null;
         //oggetto da usare per realizzare la connessione TCP
         Socket connection;
-
+        String input = null;
         while(true){
             try{
                 // il server si mette in ascolto sulla porta voluta
@@ -38,6 +41,10 @@ public class TCPServer {
                 System.out.println("Connessione stabilita!");
                 System.out.println("Socket server: " + connection.getLocalSocketAddress());
                 System.out.println("Socket client: " + connection.getRemoteSocketAddress());
+                BufferedReader in = new BufferedReader (new InputStreamReader(connection.getInputStream()));
+                DataOutputStream out = new DataOutputStream (connection.getOutputStream()); 
+                input = in.readLine();
+                System.out.println(input);
             }
                catch(IOException e){
                    System.err.println("Errore di I/O!");
